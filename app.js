@@ -20,8 +20,8 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js")
 
-// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderLust";
-const dbUrl = process.env.ATLASDB_URL;
+// const dbUrl = "mongodb://127.0.0.1:27017/wanderLust";
+const dbUrl = process.env.ATLAS_URL;
 
 main().then(() => {
     console.log("Connected to DB");
@@ -39,7 +39,6 @@ app.use(express.urlencoded({extended : true}));
 app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
-
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     crypto: {
