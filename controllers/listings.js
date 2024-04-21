@@ -1,4 +1,5 @@
 const Listing = require("../models/listing");
+// const listingSchema = require("../Schema");
 
 module.exports.index = async (req, res, next) => {
     const allListings = await Listing.find({});
@@ -22,7 +23,7 @@ module.exports.showListing = async (req, res, next) => {
 module.exports.createListing = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
-    listingSchema.validate(req.body);
+    // listingSchema.validate(req.body);
     const newListing = new Listing(req.body.listing);
     newListing.image = { url, filename };
     newListing.owner = req.user._id;
